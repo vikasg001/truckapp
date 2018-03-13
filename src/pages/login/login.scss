@@ -1,0 +1,107 @@
+page-login {
+
+  .login-content {
+    background: url("../assets/icon/bg-2.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    .scroll-content {
+      /*display: table !important;*/
+      width: 100% !important;
+      height: 100% !important;
+      /*max-width: 600px;*/
+      margin: 0 auto;
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+    .logoIcon {
+      font-size: 9rem;
+      font-weight: bold;
+      color: map_get($colors, 'secondary');
+      margin-top: 26%;
+      display: block;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    .login-box {
+      padding: 20px 20px 0 20px;
+    }
+
+    ion-item {
+      padding-left: 30px !important;
+      font-size: 1.4em;
+      margin-bottom: 32px;
+      border-bottom: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .signup-col {
+      margin: 0px 16px 0px 16px;
+      padding-bottom: 20px;
+    }
+
+    .item-inner {
+      border-bottom-color: #ffffff !important;
+      box-shadow: none !important;
+    }
+
+    .submit-btn {
+      background: map_get($colors, secondary);
+    }
+
+    .register-btn {
+      color: #ffffff;
+      font-size: 0.8em;
+    }
+    .invalidFormMessage span {
+      color: #ff0000;
+      position: absolute;
+      margin-top: -28px;
+      margin-left: 7px;
+      font-size: 1.2em;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .invalidFormMessage .item-inner {
+      border-bottom: none !important;
+    }
+
+    .item {
+      padding-left: 16px;
+      padding-right: 0;
+      position: relative;
+      font-size: 1.6rem;
+      font-weight: normal;
+      text-transform: none;
+      color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.65);
+      box-shadow: none;
+      transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+  }
+
+  @media screen and (max-width: 732px) and (min-width: 600px) {
+    .login-content .logoIcon {
+      font-size: 6rem;
+      font-weight: bold;
+      color: map_get($colors, 'secondary');
+      margin-top: 1%;
+      display: block;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    .login-content .login-box {
+      padding: 0px 40px 0 40px;
+    }
+
+    .row {
+      margin-bottom: -10px;
+    }
+  }
+
+}

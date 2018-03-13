@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Freight</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="freightForm">
+    <ion-item-group>
+      <ion-item-divider color="light">Freight Details
+        <ion-badge item-end>{{createdDate}}</ion-badge>
+      </ion-item-divider>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary" floating>Truck No.</ion-label>
+            <ion-input type="text" formControlName="truckNumber" [readonly]="true"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary" floating>Freight No.</ion-label>
+            <ion-input type="text" formControlName="freightNumber" [readonly]="true"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary" floating>Start Date</ion-label>
+            <ion-datetime formControlName="startDate" min="2010"></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="freightForm.controls['startDate'].invalid && submitAttempt">
+            <p class="errorMessage" *ngIf="freightForm.controls['startDate'].errors.required">Please Enter
+              Start Date</p>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label color="primary" floating>End Date</ion-label>
+            <ion-datetime formControlName="endDate" min="{{minToDate}}"></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="freightForm.controls['endDate'].invalid && submitAttempt">
+            <p class="errorMessage" *ngIf="freightForm.controls['endDate'].errors.required">Please Enter
+              End Date</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-item>
+        <ion-label color="primary" floating>Driver Name</ion-label>
+        <ion-select formControlName="driverId">
+          <ion-option value="{{item.id}}" *ngFor="let item of driverList">{{item.driverName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="freightForm.controls['driverId'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="freightForm.controls['driverId'].errors.required">Please Enter
+          Driver Name</p>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group formArrayName="freightItems">
+      <ion-item-divider color="light">Freight Items</ion-item-divider>
+      <div *ngFor="let freightItem of freightForm.controls.freightItems.controls; let i=index">
+        <ion-row>
+          <ion-col col-8>
+            <ion-item>
+              <ion-label color="primary" floating>Item {{i+1}}</ion-label>
+              <ion-input type="text" [formControl]="freightItem.controls.itemName"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-4>
+            <ion-item>
+              <ion-label color="primary" floating>Price {{i+1}}</ion-label>
+              <ion-input type="text" [formControl]="freightItem.controls.price"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-row>
+        <ion-col col-8>
+          <button ion-button item-right (click)="Add(freightParams)">Add Freight</button>
+        </ion-col>
+        <ion-col col-4>
+          <ion-badge item-end>Total : {{totalFreights}}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-item-group>
+
+    <ion-item-group formArrayName="expensesItems">
+      <ion-item-divider color="light">Expenses Items</ion-item-divider>
+      <div *ngFor="let Item of freightForm.controls.expensesItems.controls; let i=index">
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label color="primary" floating>Expense Item {{i+1}}</ion-label>
+              <ion-input type="text" [formControl]="Item.controls.itemName"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <ion-label color="primary" floating>Up {{i+1}}</ion-label>
+              <ion-input type="text" [formControl]="Item.controls.priceUp"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item>
+              <ion-label color="primary" floating>Down {{i+1}}</ion-label>
+              <ion-input type="text" [formControl]="Item.controls.priceDown"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-row>
+        <ion-col col-6>
+          <button item-right ion-button (click)="addExpenses(expensesParams)">Add Expenses</button>
+        </ion-col>
+        <ion-col col-6 text-center>
+          <ion-badge item-end>Total : {{totalExpens}}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-row>
+        <ion-item>
+          <ion-label color="primary" floating>Driver Payment</ion-label>
+          <ion-input type="text" formControlName="paymentDriverAmt"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="freightForm.controls['paymentDriverAmt'].invalid && submitAttempt">
+          <p class="errorMessage" *ngIf="freightForm.controls['paymentDriverAmt'].errors.required">Please Enter
+            Driver Payment Amt</p>
+        </ion-item>
+      </ion-row>
+      <ion-item-divider color="light">Payment
+        <ion-badge item-end>Balance Amount: {{getBalAmount(totalFreights,totalExpens,driverPayment)}}</ion-badge>
+      </ion-item-divider>
+      <ion-input type="hidden" formControlName="paymentId"></ion-input>
+      <ion-item>
+        <ion-label color="primary" floating>Payment</ion-label>
+        <ion-input type="text" formControlName="paymentAmt"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="freightForm.controls['paymentAmt'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="freightForm.controls['paymentAmt'].errors.required">Please Enter
+          Payment Amt</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" floating>Description</ion-label>
+        <ion-textarea type="text" formControlName="payDescription"></ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="freightForm.controls['payDescription'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="freightForm.controls['payDescription'].errors.required">Please Enter
+          Description</p>
+      </ion-item>
+    </ion-item-group>
+    <button type="submit" ion-button full (click)="freightFormSubmit(freightForm.value)">Save</button>
+  </form>
+</ion-content>

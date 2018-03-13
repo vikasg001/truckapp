@@ -1,0 +1,42 @@
+page-truck {
+
+  .iconClass {
+    font-size: 1.6em;
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+
+  .iconContentClass {
+    font-size: 1.2em;
+    color: #000000;
+  }
+
+  .textClass {
+    display: inline-block;
+    vertical-align: 1px;
+  }
+
+  .bottomButtons {
+    width: 97%;
+    margin: 0 auto;
+    ion-badge {
+      margin-top: 7px;
+    }
+    .fixWidth {
+      width: 140px;
+    }
+    button[ion-button] {
+      padding: 0 0.6em;
+      height: 25px;
+      font-size: 1.2rem;
+      text-transform: capitalize;
+    }
+  }
+  .alertIcon {
+    font-size: 2.2em !important;
+  }
+  .editIcon {
+    font-size: 2.2em !important;
+  }
+
+}

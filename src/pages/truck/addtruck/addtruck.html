@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Truck</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <form [formGroup]="addTruckForm" (ngSubmit)="addTruckFormSubmit(addTruckForm.value)" class="inputBackground">
+    <ion-list>
+      <ion-input type="hidden" [formControl]="addTruckForm.controls['id']" ></ion-input>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="compass" item-left></ion-icon>
+          Truck No
+        </ion-label>
+        <ion-input type="text" [formControl]="addTruckForm.controls['truck_no']" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['truck_no'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['truck_no'].errors.required">Please Enter
+          Truck No</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="calendar" item-left></ion-icon>
+          Insurance Due Date
+        </ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" [formControl]="addTruckForm.controls['insuranceDueDate']" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['insuranceDueDate'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['insuranceDueDate'].errors.required">Please Due
+          Date</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="calendar" item-left></ion-icon>
+          Permit Due Date
+        </ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" [formControl]="addTruckForm.controls['permitDueDate']" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['permitDueDate'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['permitDueDate'].errors.required">Please Due
+          Date</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="calendar" item-left></ion-icon>
+          Tax Due Date
+        </ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" [formControl]="addTruckForm.controls['taxDueDate']" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['taxDueDate'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['taxDueDate'].errors.required">Please Due
+          Date</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="calendar" item-left></ion-icon>
+          Fitness Due Date
+        </ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" [formControl]="addTruckForm.controls['fitnessDueDate']" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['fitnessDueDate'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['fitnessDueDate'].errors.required">Please Due
+          Date</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="calendar" item-left></ion-icon>
+          Pollution Due Date
+        </ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" [formControl]="addTruckForm.controls['pollutionDueDate']" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['pollutionDueDate'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['pollutionDueDate'].errors.required">Please Due
+          Date</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="people" item-left></ion-icon>
+          Description
+        </ion-label>
+        <ion-textarea [formControl]="addTruckForm.controls['description']">
+        </ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="addTruckForm.controls['description'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="addTruckForm.controls['description'].errors.required">Please Select
+          Description</p>
+      </ion-item>
+      <ion-item>
+        <button ion-button block large>Save</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

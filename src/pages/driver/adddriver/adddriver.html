@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Driver Truck</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <form [formGroup]="driverForm" (ngSubmit)="addDriverFormSubmit(driverForm.value)" class="inputBackground">
+    <ion-list>
+      <ion-input type="hidden" [formControl]="driverForm.controls['id']" ></ion-input>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="compass" item-left></ion-icon>
+          Driver Name
+        </ion-label>
+        <ion-input type="text" [formControl]="driverForm.controls['driverName']" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="driverForm.controls['driverName'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="driverForm.controls['driverName'].errors.required">Please Enter
+          Driver Name</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="compass" item-left></ion-icon>
+          Mobile
+        </ion-label>
+        <ion-input type="text" [formControl]="driverForm.controls['mobile']" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="driverForm.controls['mobile'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="driverForm.controls['mobile'].errors.required">Please Enter
+          Mobile</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="compass" item-left></ion-icon>
+          Licence Number
+        </ion-label>
+        <ion-input type="text" [formControl]="driverForm.controls['licenceNumber']" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="driverForm.controls['licenceNumber'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="driverForm.controls['licenceNumber'].errors.required">Please Enter
+          Licence Number</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="compass" item-left></ion-icon>
+          Salary
+        </ion-label>
+        <ion-input type="text" [formControl]="driverForm.controls['salary']" ></ion-input>
+      </ion-item>
+      <ion-item *ngIf="driverForm.controls['salary'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="driverForm.controls['salary'].errors.required">Please Enter
+          Salary</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="calendar" item-left></ion-icon>
+          Date of join
+        </ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" [formControl]="driverForm.controls['dateofjoin']" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="driverForm.controls['dateofjoin'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="driverForm.controls['dateofjoin'].errors.required">Please Due
+          Date</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="dark" stacked>
+          <ion-icon name="people" item-left></ion-icon>
+          Address
+        </ion-label>
+        <ion-textarea [formControl]="driverForm.controls['address']">
+        </ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="driverForm.controls['address'].invalid && submitAttempt">
+        <p class="errorMessage" *ngIf="driverForm.controls['address'].errors.required">Please Select
+          Description</p>
+      </ion-item>
+      <ion-item>
+        <button ion-button block large>Save</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

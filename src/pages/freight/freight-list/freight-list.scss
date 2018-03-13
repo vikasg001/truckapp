@@ -1,0 +1,37 @@
+page-freight-list {
+  .bottomButtons {
+    ion-badge {
+      margin-top: 7px;
+    }
+    .fixWidth {
+      width: 140px;
+    }
+    button[ion-button] {
+      padding: 0 0.6em;
+      height: 25px;
+      font-size: 1.2rem;
+      text-transform: capitalize;
+    }
+  }
+}
+page-freight-view{
+  .printCss{
+    font-size: 7px;
+  }
+  .secondPdf{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .mainPdf {
+    [col-6],[col-5],[col-4],[col-3],[col-12] {
+      padding: 1px;
+    }
+  }
+
+  .secondPdf  {
+    [col-6],[col-5],[col-4],[col-3],[col-12]{
+      padding: 1px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Freight List</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="lock"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-icon name="car" item-start></ion-icon>
+    {{truck_no}}
+    <ion-badge item-end [color]="balAmt > 0 ? 'primary' : 'danger'">Earning: {{balAmt}}</ion-badge>
+  </ion-item>
+  <div *ngIf="freightList.length > 0">
+    <ion-card *ngFor="let item of freightList">
+      <h2>
+        <ion-icon name="calendar" item-start></ion-icon>
+        {{item.createdDate}}
+      </h2>
+      <ion-row>
+        <ion-col text-left>
+          Start : {{item.startDate}}
+        </ion-col>
+        <ion-col text-right>
+          End : {{item.endDate}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-left>
+          Freight : {{item.freightAmt}}
+        </ion-col>
+        <ion-col text-right>
+          Expenses: {{item.expensesAmt}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-left>
+          Payment : {{item.paymentAmt}}
+        </ion-col>
+        <ion-col text-right>
+          <ion-badge item-end [color]="(getSingleBal(item) > 0 ? 'primary' : 'danger')">Bal: {{getSingleBal(item)}}
+          </ion-badge>
+        </ion-col>
+      </ion-row>
+      <ion-row class="bottomButtons">
+        <ion-col text-left>
+          Freight No. : {{item.freightNumber}}
+        </ion-col>
+        <ion-col no-margin text-right>
+          <button ion-button icon-left item-right (click)="editFreight(item)">
+            <ion-icon name="create" class="editIcon"></ion-icon>
+            Edit
+          </button>
+          <button ion-button icon-left item-right color="danger" (click)="viewFreight(item)">
+            <ion-icon name="eye" class="editIcon"></ion-icon>
+            View
+          </button>
+
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>
+<ion-fab right bottom (click)="onCheckout()">
+  <button ion-fab>
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      My Payment
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-row>
+    <ion-col>Date</ion-col>
+    <ion-col>Driver</ion-col>
+    <ion-col>Payment</ion-col>
+    <ion-col>Description</ion-col>
+    <ion-col>Freight No.</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let item of paymentList">
+    <ion-col>{{item.createdDate}}</ion-col>
+    <ion-col>{{getDriverName(item.driverId)}}</ion-col>
+    <ion-col>{{item.paymentAmt}}</ion-col>
+    <ion-col>{{item.payDescription}}</ion-col>
+    <ion-col>{{item.freightNumber}}</ion-col>
+  </ion-row>
+</ion-content>

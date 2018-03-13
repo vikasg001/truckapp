@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Driver Truck</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="lock"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <ion-content>
+    <ion-split-pane>
+      <ion-content no-padding [attr.col-4]="enableTabView" [attr.col-12]="enableMobileView"
+                   [ngClass]="{'ion-content-lists':!isListHide}">
+        <ion-header>
+          <ion-searchbar placeholder="e.g. Search by Registration, Name" (ionInput)="filterVehicleList($event)"
+                         debounce="2000"></ion-searchbar>
+        </ion-header>
+        <ion-content>
+          <div *ngIf="infiniteScrollbool" text-center>
+            <h2>No vehicle found!</h2>
+          </div>
+          <ion-card *ngFor="let item of driverList ">
+            <ion-item>
+              <h2>{{item.dateofjoin}}</h2>
+              <h3>
+                <ion-icon name="car" class="iconContentClass"></ion-icon>
+                <span class="textClass">{{item.driverName}}</span></h3>
+              <p>
+                <ion-icon name="person" class="iconContentClass"></ion-icon>
+                <span class="textClass">{{item.licenceNumber}}</span>
+              </p>
+
+              <p>
+                <ion-icon name="home" class="iconContentClass"></ion-icon>
+                <span class="textClass">{{item.address}}</span>
+              </p>
+            </ion-item>
+            <ion-row class="bottomButtons">
+              <ion-col col-3 no-padding no-margin>
+      <span item-left>
+        <button ion-button icon-left clear (click)="addDriver(item)">
+                <ion-icon name="create" class="editIcon"></ion-icon>
+              </button>
+
+      </span>
+              </ion-col>
+              <ion-col col-4 no-padding no-margin>
+                <ion-icon name="call" class="iconContentClass"></ion-icon>
+                <span class="textClass">{{item.mobile}}</span>
+              </ion-col>
+              <ion-col col-5 no-padding no-margin>
+                <ion-icon name="pricetag" class="iconContentClass"></ion-icon>
+                <span class="textClass">{{item.salary}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-content>
+      </ion-content>
+    </ion-split-pane>
+
+  </ion-content>
+  <ion-fab right bottom (click)="addDriver()">
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

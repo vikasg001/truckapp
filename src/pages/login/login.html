@@ -1,0 +1,36 @@
+<ion-content class="login-content" padding>
+  <form  [formGroup]="signInForm" novalidate (ngSubmit)="login(signInForm.value)" >
+    <div text-center><span class="logoIcon">Tapp</span></div>
+    <div class="login-box">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item no-lines>
+              <ion-input type="text" placeholder="Username"  [formControl]="signInForm.controls['username']" autocomplete="off" inputTabIndex></ion-input>
+            </ion-item>
+            <span *ngIf="signInForm.controls['username'].invalid && submitAttempt" class="invalidFormMessage">
+              <span *ngIf="signInForm.controls['username'].errors.required"> Username is required.</span>
+            </span>
+            <ion-item no-lines>
+              <ion-input type="password" placeholder="Password" [formControl]="signInForm.controls['password']"  autocomplete="off"></ion-input>
+            </ion-item>
+            <span *ngIf="signInForm.controls['password'].invalid && submitAttempt" class="invalidFormMessage">
+              <span *ngIf="signInForm.controls['password'].errors.required">Password is required.</span>
+              <span *ngIf="signInForm.controls['password'].errors.minlength">Password should have at least 3 characters.</span>
+            </span>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full  large type="submit" >Login</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col text-center>
+          Version {{appVersion}}
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+</ion-content>
